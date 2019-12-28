@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import './question.dart';
+import './answer.dart';
 
 void main() => runApp(MyApp());
 
@@ -18,10 +19,10 @@ class _MyAppState extends State<MyApp> {
 
   void answerQuestion() {
     setState(() {
-      if (_questionIndex == 0) {
-        _questionIndex = 1;
-      } else {
+      if (_questionIndex == 2) {
         _questionIndex = 0;
+      } else {
+        _questionIndex++;
       }
     });
   }
@@ -29,8 +30,18 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     var questions = [
-      "What's your favorite color ?",
-      "What's your favorite animal ?"
+      {
+        'questionText': "What's your favorite color ?",
+        'answers': ['Red', 'Black', 'Green', 'White'],
+      },
+      {
+        'questionText': "What's your favorite animal ?",
+        'answers': ['Rabbit', 'Snake', 'Elephant', 'Lion'],
+      },
+      {
+        'questionText': "Who's your favorite instructor ?",
+        'answers': ['Vedansh', 'Ved', 'Dwivedi', 'Vedansh Dwivedi'],
+      },
     ];
     // Scaffold creats a base page design
     return MaterialApp(
@@ -40,19 +51,10 @@ class _MyAppState extends State<MyApp> {
       ),
       body: Column(
         children: <Widget>[
-          Question(questions[_questionIndex]),
-          RaisedButton(
-            child: Text('Answer 1'),
-            onPressed: answerQuestion,
-          ),
-          RaisedButton(
-            child: Text('Answer 2'),
-            onPressed: answerQuestion,
-          ),
-          RaisedButton(
-            child: Text('Answer 3'),
-            onPressed: answerQuestion,
-          ),
+          Question(questions[_questionIndex]['questionText']),
+          ...(questions[_questionIndex]['answers'] as List<String>).map((answer){
+            return Answer(answerQuestion, answer);
+          }).toList()
         ],
       ),
     ));
