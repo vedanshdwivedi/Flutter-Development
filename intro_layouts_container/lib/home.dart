@@ -5,7 +5,25 @@ class Home extends StatelessWidget{
   Widget build(BuildContext context) {
     return Container(
       color: Colors.greenAccent,
-      child: new Column(
+      
+      child: new Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          new Text("Item 1 ", style: new TextStyle(color: Colors.white, fontSize: 18, ),),
+          new Container(
+            color: Colors.deepOrange,
+            child: new Text("Item 3", style: new TextStyle(color: Colors.black, fontSize: 18),),
+          )
+        ],
+      ),
+      
+      
+      
+      
+      
+      
+      /*
+        child: new Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           new Text("Item 1", style: new TextStyle(color: Colors.white),),
@@ -16,7 +34,7 @@ class Home extends StatelessWidget{
             child: new Text("Item 3", style: new TextStyle(color: Colors.black),),
           ),
         ],
-      ),
+      ),*/
 
 
 
