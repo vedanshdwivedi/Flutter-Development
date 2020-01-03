@@ -1,38 +1,59 @@
 import 'package:flutter/material.dart';
 
-class Home extends StatelessWidget {
+class MakeItRain extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return MakeItRainState();
+  }
+}
+
+class MakeItRainState extends State<MakeItRain> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-        backgroundColor: Colors.deepOrange[100],
-        appBar: new AppBar(
-          title: Text('Let it Rain!'),
-          backgroundColor: Colors.deepOrange[400],
-        ),
-        body: new Center(
-          child: new Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              new Text(
-                'Let it Rain',
-                style: new TextStyle(fontSize: 22),
-                textAlign: TextAlign.center,
-                textDirection: TextDirection.ltr,
+      appBar: new AppBar(
+        title: Text('Make it Rain!'),
+        backgroundColor: Colors.lightGreen,
+      ),
+      body: new Container(
+        child: new Column(
+          children: <Widget>[
+            new Center(
+              child: new Text(
+                'Get Rich!',
+                style: new TextStyle(
+                    color: Colors.grey,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 30),
               ),
-              new Text(
-                '\$ 10000',
-                style:
-                    new TextStyle(fontSize: 36, color: Colors.green.shade800),
-                textAlign: TextAlign.center,
-                textDirection: TextDirection.ltr,
+            ),
+
+            new Expanded(
+              child: new Center(
+                child: new Text('Money', style: new TextStyle(
+                  color: Colors.greenAccent,
+                  fontWeight: FontWeight.w800,
+                  fontSize: 47,
+                ),),
               ),
-              new IconButton(
-                icon: new Icon(Icons.attach_money),
-                onPressed: () => debugPrint('Add Money Please'),
-              )
-            ],
-          ),
+            ),
+
+
+            new Expanded(
+              child: new Center(
+                child: new FlatButton(
+                  color: Colors.lightGreen,
+                  textColor: Colors.white70,
+                  onPressed: () => debugPrint('Hey'),
+                  child: Text("Let it Rain", style: new TextStyle(
+                    fontSize: 20
+                  ),),
+                ),
+              ),
+            )
+          ],
         ),
-        );
+      ),
+    );
   }
 }

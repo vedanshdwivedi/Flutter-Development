@@ -4,6 +4,6 @@ import './home.dart';
 void main(){
   runApp(MaterialApp(
     title: 'Stateless',
-    home: new Home(),
+    home: new MakeItRain(),
   ));
 }
