@@ -40,9 +40,17 @@ class Home extends StatelessWidget {
               child: new Text("Tap Me"),
               onTap: () => debugPrint('Inkwell Tapped'),
             ),
+
+
           ],
         ),
       ),
+
+      bottomNavigationBar: new BottomNavigationBar(items: [
+        new BottomNavigationBarItem(icon: new Icon(Icons.add),title: new Text('Hey')),
+        new BottomNavigationBarItem(icon: new Icon(Icons.print),title: new Text('Nope')),
+        new BottomNavigationBarItem(icon: new Icon(Icons.call_missed),title: new Text('Hello')),
+      ], onTap: (int i) => debugPrint("Hey Touched $i"),),
     );
   }
 }
