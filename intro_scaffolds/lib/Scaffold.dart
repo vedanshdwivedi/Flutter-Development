@@ -46,6 +46,13 @@ class Home extends StatelessWidget {
         ),
       ),
 
+      floatingActionButton: new FloatingActionButton(
+        onPressed: () => debugPrint('Caller Requested'),
+        backgroundColor: Colors.lightGreen,
+        tooltip: 'Open Caller',
+        child: new Icon(Icons.call),
+      ),
+
       bottomNavigationBar: new BottomNavigationBar(items: [
         new BottomNavigationBarItem(icon: new Icon(Icons.add),title: new Text('Hey')),
         new BottomNavigationBarItem(icon: new Icon(Icons.print),title: new Text('Nope')),
