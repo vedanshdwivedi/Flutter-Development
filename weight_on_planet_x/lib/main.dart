@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
-import './planet.dart';
+import './weight.dart';
 
 void main() {
-  runApp(Weight());
+  runApp(Planet());
 }
 
-class Weight extends StatelessWidget{
+class Planet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Weight on Planet X",
+      title: 'Weight on Planet X',
       home: new Scaffold(
-        backgroundColor: Colors.green[100],
-        appBar: AppBar(
-          title: Text("Weight on Planet X !!!"),
+        backgroundColor: Colors.blueGrey,
+        appBar: new AppBar(
+          backgroundColor: Colors.black38,
+          title: Text('Weight on Planet X'),
           centerTitle: true,
-          backgroundColor: Colors.green[400],
         ),
-        body: Planet(),
+        body: new Weight(),
       ),
     );
   }
