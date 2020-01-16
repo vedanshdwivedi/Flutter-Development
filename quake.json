@@ -1,0 +1,40 @@
+{
+    "type": "Feature",
+    "properties": {
+        "mag": 0.56000000000000005,
+        "place": "8km W of Cobb, CA",
+        "time": 1578886234710,
+        "updated": 1578886682081,
+        "tz": -480,
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/nc73326886",
+        "detail": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/nc73326886.geojson",
+        "felt": null,
+        "cdi": null,
+        "mmi": null,
+        "alert": null,
+        "status": "automatic",
+        "tsunami": 0,
+        "sig": 5,
+        "net": "nc",
+        "code": "73326886",
+        "ids": ",nc73326886,",
+        "sources": ",nc,",
+        "types": ",geoserve,nearby-cities,origin,phase-data,scitech-link,",
+        "nst": 8,
+        "dmin": 0.022349999999999998,
+        "rms": 0.02,
+        "gap": 83,
+        "magType": "md",
+        "type": "earthquake",
+        "title": "M 0.6 - 8km W of Cobb, CA"
+    },
+    "geometry": {
+        "type": "Point",
+        "coordinates": [
+            -122.8096695,
+            38.834999099999997,
+            1.8300000000000001
+        ]
+    },
+    "id": "nc73326886"
+}

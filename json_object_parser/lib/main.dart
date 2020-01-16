@@ -6,7 +6,6 @@ import 'package:http/http.dart' as http;
 
 void main() async {
   List _data = await getJSON();
-  print(_data[0]['body']);
   runApp(new MaterialApp(
     title: 'JSON Object Parser',
     home: new Scaffold(
@@ -36,7 +35,7 @@ void main() async {
                   backgroundColor: Colors.orange,
                   child: Text(_data[position]["id"].toString()),
                 ),
-                onTap: () => showTapMessage(context, position),
+                onTap: () => showTapMessage(context, position, _data[position]["title"]),
                 // onTap: showTapMessage(context, position)
                 
               )
@@ -50,13 +49,13 @@ void main() async {
 }
 
 
-void showTapMessage(BuildContext context, int position){
+void showTapMessage(BuildContext context, int position, String showcase){
   var alertDialog = new AlertDialog(
-    title: Text("Hello"),
+    title: Text(""),
     actions: <Widget>[
       FlatButton(
         onPressed: () => debugPrint("OK Pressed"),
-        child: Text("OK"),
+        child: Text(showcase),
       )
     ],
   );
@@ -65,6 +64,8 @@ void showTapMessage(BuildContext context, int position){
     return alertDialog;
   });
 }
+
+
 
 Future<List> getJSON() async {
   String apiUrl = "https://jsonplaceholder.typicode.com/posts";
