@@ -3,7 +3,7 @@ import './home.dart';
 
 void main() {
   runApp(new MaterialApp(
-    title: 'Klimatic',
-    home: new Klimatic(),
+    title: 'Weather App',
+    home: new Home(),
   ));
 }
