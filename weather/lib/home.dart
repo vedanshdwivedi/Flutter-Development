@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import './util/utils.dart' as util;
+import './ui/newscreen.dart';
 import 'dart:async';
 import 'dart:convert';
 
@@ -10,10 +11,11 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
-  void showStuff() async{
-    Map data = await getWeather(util.appId, util.defaultCity);
-    debugPrint(data.toString());
+  void showStuff() {
+    var router = new MaterialPageRoute(builder: (BuildContext context) {
+      return NewScreen();
+    });
+    Navigator.of(context).push(router);
   }
 
   @override
@@ -39,7 +41,7 @@ class _HomeState extends State<Home> {
           new Container(
             margin: const EdgeInsets.fromLTRB(0, 10, 10, 0),
             alignment: Alignment.topRight,
-            child: new Text("Jamshedpur", style: cityStyle()),
+            child: new Text(util.defaultCity, style: cityStyle()),
           ),
 
           new Container(
@@ -50,7 +52,7 @@ class _HomeState extends State<Home> {
           // Container that has weather Data
           new Container(
             alignment: Alignment.center,
-            margin: new EdgeInsets.fromLTRB(60, 420, 150, 0),
+            margin: new EdgeInsets.fromLTRB(60, 420, 0, 0),
             child: updateTempWidget(util.defaultCity),
           ),
         ],
@@ -60,42 +62,59 @@ class _HomeState extends State<Home> {
 
   Future<Map> getWeather(String appId, String city) async {
     // units = imperial for Fahrenheit and metric for Celcius
-    
+
     String apiUrl =
-        "https://samples.openweathermap.org/data/2.5/find?q=$city&units=metric&appid=${util.appId}";
+        "https://api.openweathermap.org/data/2.5/weather?q=$city&units=metric&appid=${util.appId}";
     //debugPrint(apiUrl);
     http.Response response = await http.get(apiUrl);
     return json.decode(response.body);
   }
 
-
-  Widget updateTempWidget(String city){
+  Widget updateTempWidget(String city) {
     return new FutureBuilder(
-      future: getWeather(util.appId, city),
-      builder: (BuildContext context, AsyncSnapshot<Map> snapshot){
-        if(snapshot.hasData){
-          Map content = snapshot.data;
-          List contentList = content["list"];
-          return new Container(
-            child: new Column(
-              children: <Widget>[
-                new ListTile(
-                  
-                  title: new Text(contentList[0]["main"]["temp"].toString(), style: weatherStyle(),),
-                ),
-              ],
-            ),
-          );
-        }else{
-          return new Container();
-        }
-    });
+        future: getWeather(util.appId, city),
+        builder: (BuildContext context, AsyncSnapshot<Map> snapshot) {
+          if (snapshot.hasData) {
+            Map content = snapshot.data;
+            //print(content);
+            return new Container(
+              child: new Column(
+                children: <Widget>[
+                  new ListTile(
+                    title: new Text(
+                      content["main"]["temp"].toString() + " C",
+                      style: weatherStyle(),
+                    ),
+                    subtitle: new ListTile(
+                      title: new Text(
+                        "Humidity: ${content["main"]["humidity"].toString()}\n"
+                        "Min: ${content["main"]["temp_min"].toString()} C\n"
+                        "Max: ${content["main"]["temp_max"].toString()} C",
+                        style: extraData(),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          } else {
+            return new Container();
+          }
+        });
   }
 }
 
 TextStyle cityStyle() {
   return new TextStyle(
       color: Colors.white, fontStyle: FontStyle.italic, fontSize: 30.0);
+}
+
+TextStyle extraData() {
+  return new TextStyle(
+    color: Colors.white70,
+    fontStyle: FontStyle.normal,
+    fontSize: 17.0,
+  );
 }
 
 TextStyle weatherStyle() {

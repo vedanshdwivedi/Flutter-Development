@@ -1,2 +1,2 @@
-final appId = "d28cc2694c4608c424386fe0a01b1e52";
-final defaultCity = "Jamshedpur"; 
+final appId = "0f4b0cd18534c8cdabb7585016f38cee";
+String defaultCity = "Jamshedpur"; 
