@@ -12,12 +12,11 @@ class Teacher extends StatefulWidget {
 }
 
 class _TeacherState extends State<Teacher> {
-
   void initState() {
     // TODO: implement initState
     super.initState();
-    if(teacherName.isEmpty || teacherName==""){
-      var router = new MaterialPageRoute(builder: (BuildContext context){
+    if (teacherName.isEmpty || teacherName == "") {
+      var router = new MaterialPageRoute(builder: (BuildContext context) {
         return Home();
       });
       Navigator.of(context).push(router);
@@ -34,7 +33,19 @@ class _TeacherState extends State<Teacher> {
       ),
       body: new ListView(
         children: <Widget>[
-          Text("Welcome $teacherName"),
+          Center(
+            child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  "Welcome $teacherName",
+                  style: new TextStyle(
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.w400,
+                  ),
+                )),
+          ),
+
+          
         ],
       ),
     );
