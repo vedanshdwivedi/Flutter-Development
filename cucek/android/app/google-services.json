@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "618562883014",
+    "firebase_url": "https://cucek-attendance.firebaseio.com",
+    "project_id": "cucek-attendance",
+    "storage_bucket": "cucek-attendance.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:618562883014:android:4ec79d29738b14fc3e76c7",
+        "android_client_info": {
+          "package_name": "com.example.cucek"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "618562883014-jmpge6qni5ulv56ub3ntno5i2r06r86i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLwHJXE1lkvkCppBXKxtBLg5iyzpSR0ts"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "618562883014-jmpge6qni5ulv56ub3ntno5i2r06r86i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

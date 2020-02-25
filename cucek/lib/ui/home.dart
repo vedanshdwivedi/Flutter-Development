@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:dropdown_formfield/dropdown_formfield.dart';
 import 'package:flutter/rendering.dart';
 
+import './teacher.dart';
+import './admin.dart';
+
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
@@ -18,6 +21,8 @@ class _HomeState extends State<Home> {
   }
 
   final _formKey = GlobalKey<FormState>();
+  String _username;
+  String _password;
 
   @override
   Widget build(BuildContext context) {
@@ -30,10 +35,10 @@ class _HomeState extends State<Home> {
       body: Padding(
         padding: const EdgeInsets.all(18.0),
         child: new Center(
-          child: new Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+          child: new ListView(
             children: <Widget>[
-              Image.network("https://www.noticebard.com/wp-content/uploads/2019/04/CUSAT.png"),
+              Image.network(
+                  "https://www.noticebard.com/wp-content/uploads/2019/04/CUSAT.png"),
               Form(
                 key: _formKey,
                 child: Column(
@@ -63,8 +68,11 @@ class _HomeState extends State<Home> {
                       validator: (value) {
                         if (value == "") {
                           return "Please select a role";
+                        }else{
+                          _selectedRole = value;
+                          return null;
                         }
-                        return null;
+                        
                       },
                     ),
                     TextFormField(
@@ -75,6 +83,7 @@ class _HomeState extends State<Home> {
                         if (value.isEmpty) {
                           return "Please Enter ID";
                         }
+                        _username = value;
                         return null;
                       },
                     ),
@@ -87,13 +96,18 @@ class _HomeState extends State<Home> {
                         if (val.isEmpty) {
                           return "Please Enter Password";
                         }
+                        _password = val;
                         return null;
                       },
                     ),
-
-                    Center(child: Padding(
+                    Center(
+                        child: Padding(
                       padding: const EdgeInsets.all(18.0),
-                      child: RaisedButton(onPressed: () => _loginRole, child: Text("Login"), color: Colors.redAccent,),
+                      child: RaisedButton(
+                        onPressed: _loginRole,
+                        child: Text("Login"),
+                        color: Colors.redAccent,
+                      ),
                     )),
                   ],
                 ),
@@ -104,7 +118,25 @@ class _HomeState extends State<Home> {
       ),
     );
   }
-  _loginRole(){
-    // Perform Login 
+
+  Widget _loginRole() {
+    print("Attempt Login");
+    // Perform Login
+    if (_formKey.currentState.validate()) {
+      print("User : $_username and Role : $_selectedRole");
+      var router = new MaterialPageRoute(builder: (BuildContext context) {
+        // build a bridge between pages
+        if (_selectedRole == 'teacher'){
+          teacherName = _username;
+          return Teacher();
+        }
+        else{
+          adminName = _username; 
+          return new Admin();
+        }
+      });
+      // use the bridge to move
+      Navigator.of(context).push(router);
+    }
   }
 }
