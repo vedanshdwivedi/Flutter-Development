@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:dropdown_formfield/dropdown_formfield.dart';
 import 'package:flutter/rendering.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import './home.dart';
 
@@ -45,7 +46,7 @@ class _TeacherState extends State<Teacher> {
                 )),
           ),
 
-          
+
         ],
       ),
     );
