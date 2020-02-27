@@ -8,7 +8,7 @@ class Admin{
   Admin(this.name, this.password);
 
   Admin.fromSnapshot(DataSnapshot snapshot) : 
-    id = snapshot.id,
+    id = snapshot.key,
     name = snapshot.value["name"],
     password = snapshot.value["password"];
 

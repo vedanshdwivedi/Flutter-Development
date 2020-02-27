@@ -2,9 +2,11 @@
 import 'package:flutter/material.dart';
 import 'package:dropdown_formfield/dropdown_formfield.dart';
 import 'package:flutter/rendering.dart';
+import 'dart:async';
 
 import './teacher.dart';
 import './admin.dart';
+import '../utils/database_utils.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -37,8 +39,7 @@ class _HomeState extends State<Home> {
         child: new Center(
           child: new ListView(
             children: <Widget>[
-              Image.network(
-                  "https://www.noticebard.com/wp-content/uploads/2019/04/CUSAT.png"),
+              Image.asset("images/cusat_logo.png"),
               Form(
                 key: _formKey,
                 child: Column(
@@ -68,11 +69,10 @@ class _HomeState extends State<Home> {
                       validator: (value) {
                         if (value == "") {
                           return "Please select a role";
-                        }else{
+                        } else {
                           _selectedRole = value;
                           return null;
                         }
-                        
                       },
                     ),
                     TextFormField(
@@ -126,12 +126,11 @@ class _HomeState extends State<Home> {
       print("User : $_username and Role : $_selectedRole");
       var router = new MaterialPageRoute(builder: (BuildContext context) {
         // build a bridge between pages
-        if (_selectedRole == 'teacher'){
+        if (_selectedRole == 'teacher') {
           teacherName = _username;
           return Teacher();
-        }
-        else{
-          adminName = _username; 
+        } else {
+          adminName = _username;
           return new Admin();
         }
       });

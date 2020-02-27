@@ -94,6 +94,7 @@ class _AdminState extends State<Admin> {
                 var router= new MaterialPageRoute(builder: (BuildContext context){
                   return PreviousRecord();
                 });
+                Navigator.of(context).push(router);
               },
             ),
           ),
@@ -122,10 +123,19 @@ class _AdminState extends State<Admin> {
   }
   _updateTeacher(){
     // handle the updates of teachers
+    var router = new MaterialPageRoute(builder: (BuildContext context){
+        return updateTeacher();
+      });
+      Navigator.of(context).push(router);
+    
   }
 
   _updateStudent(){
     // handle the updates of students
+    var router = new MaterialPageRoute(builder: (BuildContext context){
+        return updateStudent();
+      });
+      Navigator.of(context).push(router);
   }
 
   _logout(){
