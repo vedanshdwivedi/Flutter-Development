@@ -12,6 +12,7 @@ final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 final GlobalKey<FormState> delForm = GlobalKey<FormState>();
 DatabaseReference databaseReference;
 final FirebaseAuth _auth = FirebaseAuth.instance;
+final TextEditingController _deleter = new TextEditingController();
 
 class updateTeacher extends StatefulWidget {
   @override
@@ -138,12 +139,36 @@ class _updateTeacherState extends State<updateTeacher> {
                 ),
 
                 // Submit Button
-                Center(
-                  child: Padding(
-                    padding: const EdgeInsets.all(18.0),
+                Padding(
+                  padding: const EdgeInsets.all(18.0),
+                  child: Center(
                     child: RaisedButton(
-                      onPressed: _handleSubmit,
-                      child: Text("Create Faculty"),
+                            onPressed: _handleSubmit,
+                            child: Text("Create Faculty"),
+                          ),
+                  ),
+                ),
+
+                // Remove Button
+                Padding(
+                  padding: const EdgeInsets.all(18.0),
+                  child: Container(
+                    color: Colors.redAccent,
+                    child: new Column(
+                      children: <Widget>[
+                        TextField(
+                          controller: _deleter,
+                          decoration: InputDecoration(
+                            labelText: "Enter email to remove",
+                            hintText: "abc@gmail.com",
+                          ),
+                        ),
+                        RaisedButton(
+                          onPressed: _handleDelete,
+                          child: Text("Remove"),
+                          color: Colors.white,
+                        )
+                      ],
                     ),
                   ),
                 )
@@ -216,27 +241,27 @@ class _updateTeacherState extends State<updateTeacher> {
   }
 
   _handleDelete() async {
-    final FormState form = delForm.currentState;
-    if (form.validate()) {
-      form.save();
-      form.reset();
-      Teacher tcr;
-      Query query = await databaseReference
-          .child("email")
-          .equalTo(_email)
-          .once()
-          .then((DataSnapshot snapshot) {
-        tcr = Teacher.fromSnapshot(snapshot);
-      });
-      deleteTeacher(tcr.id);
-    }
+    var e = _deleter.text;
+    _deleter.clear();
+    Teacher tcr;
+    print(e);
+    Query query = await databaseReference
+        .child("email")
+        .equalTo(e)
+        .once()
+        .then((DataSnapshot snapshot) {
+      tcr = Teacher.fromSnapshot(snapshot);
+      print(snapshot.key);
+    });
+    deleteTeacher(tcr.id);
     var route = new MaterialPageRoute(builder: (BuildContext context) {
       return Admin();
     });
-    Navigator.of(context).push(route);
+    //Navigator.of(context).push(route);
   }
 
   deleteTeacher(key) {
+    debugPrint("Deleting item");
     databaseReference.child(key).remove().then((_) {});
   }
 }
